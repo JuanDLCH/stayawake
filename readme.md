@@ -10,5 +10,5 @@
 
 ## Uso
 
-- Stayawake html-css-js
+- Stayawake html-css-js [Link](https://github.com/JuanDLCH/stayawake/tree/stayawake-basic)
 - Stayawake vue
