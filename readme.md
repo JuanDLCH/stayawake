@@ -6,7 +6,7 @@
 - Mario Alejandro Saldarriaga Alvarez
 - Jader Daniel Atehortúa Zapata
 - Jhon Mario Aviles Ruiz
-- Pablo Gonzales
+- Pablo González Velasquez
 
 ## Uso
 
