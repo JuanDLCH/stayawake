@@ -1,7 +1,31 @@
+/* General */ 
+
 body{
     margin: 0;
     padding: 0;
+    background: black;
 }
+
+h1{
+    color: white;
+}
+
+a{
+    color: white;
+}
+
+p{
+    color: white;
+}
+
+label{
+    color: white;
+}
+
+h2{
+    color: white;
+}
+
 /* Barra de navegacion */
 header{
     height: 100vh;
@@ -11,23 +35,24 @@ header{
 
 nav{
     content: "";
-    position: absolute;
+    position: fixed;
+    height: 8vh;
     bottom: 0;
     right: 0;
     left: 0;
     top: 0;
     background: rgba(0, 0, 0, 0.65);
+    z-index: 4;
 }
 nav ul{
     display: flex;
     justify-content: center;
+    align-items: center;
     list-style-type: none;
     margin-top: 0;
     padding-top: 0.65%;
     padding-bottom: 0.65%;
     height: 5vh;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.15);
 
 }
 
@@ -49,32 +74,133 @@ nav a:hover{
 
 /* Imagen de inicio */
 
-.inicio{
+.navegacion{
     height: 100vh;
     width: 100%;
-    background: url("/stayawake/src/static/img/camiongrises.jpg");
+    background: url("/stayawake/src/static/img/camionmontanas.jpg");
     background-size: 100% 100%;
     position: absolute;
+    display: flex;
 }
 
 /* Texto inicio */
 
-#principal{
+.principal{
+    z-index: 1;
+    width: 70%;
+    height: 100vh;
+    float: left;
+    text-align: center;
+    position: relative;
+    background: rgba(0, 0, 0, 0.452);
+}
+
+.textocentrado{
     color: white;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    width: 60%;
+}
+
+.textocentrado h1{
+    margin-top: 0;
+    font-size: 50px;
+    margin-bottom: 0;
+}
+
+.textocentrado p{
+    font-size: 20px;
+    margin-top: 10px;
+    color: rgb(255, 255, 255);
+} 
+
+/* Login */
+
+
+.login{
+    z-index: 3;
+    width: 30%;
+    height: 100vh;
+    float: right;
+    text-align: center;
+    position: relative;
+    background: rgba(0, 43, 68, 0.849);
+    box-shadow: -21px -1px 3px rgba(0, 0, 0, 0.356);
+}
+
+.loginitems{
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-#principal h1{
-    font-size: 60px;
-    margin-bottom: 0;
+.textbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#principal p{
-    font-size: 20px;
-    margin-top: 10px;
-    color: rgb(199, 199, 199);
+.textbox input{
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.button input{
+    margin-bottom: 20px;
+    width: 40%;
+}
+
+
+/* Origen */
+
+#origen{
+    width: 100%;
+    height: 100vh;
+    border: 2px solid red;
+    background: url("/stayawake/src/static/img/manejando.jpg");
+    background-size: 100% 100%;
+    padding: 0;
+}
+
+.itemsOrigen{
+    width: 100%;
+    height: 100vh;
+    padding-top: 8vh;
+    text-align: center;
+    position: relative;
+    background: rgba(0, 0, 0, 0.452);
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    
+    justify-content: center;
+}
+
+.itemsOrigen h1{
+    margin-top: 0;
+}
+
+.itemsOrigen h2{
+    margin-top: 1%;
+}
+
+.itemsOrigen div{
+    margin: 5%;
+    margin-top: 0%;
+}
+
+.origen{
+    width: 25%;
+}
+
+.caso{
+    width: 45%;
+}
+
+.datos{
+    width: 45%;
 }
