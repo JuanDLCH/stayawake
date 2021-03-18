@@ -34,6 +34,7 @@ header{
 }
 
 nav{
+    align-items: center;
     content: "";
     position: fixed;
     height: 8vh;
@@ -45,13 +46,15 @@ nav{
     z-index: 4;
 }
 nav ul{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
     list-style-type: none;
     margin-top: 0;
-    padding-top: 0.65%;
-    padding-bottom: 0.65%;
     height: 5vh;
 
 }
@@ -160,47 +163,96 @@ nav a:hover{
 #origen{
     width: 100%;
     height: 100vh;
-    border: 2px solid red;
     background: url("/stayawake/src/static/img/manejando.jpg");
     background-size: 100% 100%;
     padding: 0;
 }
 
-.itemsOrigen{
-    width: 100%;
-    height: 100vh;
-    padding-top: 8vh;
-    text-align: center;
-    position: relative;
-    background: rgba(0, 0, 0, 0.452);
-    display: flex;
-    z-index: 1;
+.tituloIzquierda{
     align-items: center;
-    
-    justify-content: center;
+    text-align: center;
+    float: left;
+    height: 100vh;
+    width: 40%;
+    background: rgba(5, 15, 153, 0.747);
+    box-shadow: 21px -1px 3px rgba(0, 0, 0, 0.356);
 }
 
-.itemsOrigen h1{
-    margin-top: 0;
+.tituloIzquierda h1{
+
+    font-size: 50px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+
 }
 
-.itemsOrigen h2{
-    margin-top: 1%;
+.carrusel{
+    float: right;
+    align-items: center;
+    width: 60%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.452);
 }
 
-.itemsOrigen div{
-    margin: 5%;
-    margin-top: 0%;
-}
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  .gallery {
+    /*background: rgb(0, 0, 0);*/
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 600px;
+    width: 80%;
+  }
+  
+  .gallery-cell {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 600px;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: rgba(0, 0, 0, 0.452);
+    counter-increment: gallery-cell;
+  }
 
-.origen{
-    width: 25%;
-}
+  .gallery-cell .origen{
+    font-size: 27px;
+    width: 100%;
+    margin: 0;
+  }
 
-.caso{
-    width: 45%;
-}
+  .gallery-cell .intro{
+    font-size: 25px;
+    width: 100%;
+    margin: 0;
+  }
 
-.datos{
-    width: 45%;
-}
+  .gallery-cell .datos{
+    font-size: 22px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .gallery-cell .caso{
+    font-size: 19px;
+    width: 100%;
+    margin: 0;
+  }
+  
+  /*cell number 
+  .gallery-cell:before {
+    display: block;
+    text-align: center;
+    content: counter(gallery-cell);
+    line-height: 200px;
+    font-size: 80px;
+    color: white; 
+  } */
