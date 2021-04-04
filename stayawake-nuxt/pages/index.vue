@@ -43,19 +43,22 @@
           <div class="loginitems">
             <h1>Inicia Sesion</h1>
 
-            <div class="textbox">
-              <label for="txtemail">Correo Electronico:</label>
-              <input type="email" name="correo" id="txtemail" />
-            </div>
+            <v-form ref="formRegister" v-model="valid" lazy-validation id="form">
+              <v-text-field
+               class="cajatexto"
+                v-model="product.id"
+                :rules="rules.required"
+                label="Identificación"
+              ></v-text-field>
 
-            <div class="textbox">
-              <label for="txtpass">Contraseña:</label>
-              <input type="password" name="pass" id="txtpass" />
-            </div>
-
-            <div class="button">
-              <input type="submit" value="Ingresar" />
-            </div>
+              <v-text-field 
+              class="cajatexto"
+              label="Contraseña" 
+              v-model="product.id"
+              :rules="rules.required"
+              type="password">
+              </v-text-field>
+            </v-form>
 
             <a href="">¿Olvidaste tu contraseña?</a>
 
@@ -275,7 +278,46 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data: () => ({
+    valid: true,
+    product: {
+      id: '',
+      name: '',
+    },
+    rules: {
+      required: [(v) => !!v || 'El campo es obligatorio'],
+    },
+  }),
+
+  methods: {
+    async saveProduct() {
+      if (this.$refs.formRegister.validate()) {
+        let product = Object.assign({}, this.product)
+        console.log(product)
+
+        //json-server --watch db.json -p 3001
+
+        let response = await this.$axios.post(
+          'http://localhost:3001/usuarios',
+          product
+        )
+        console.log(response)
+      } else {
+        console.log('Formualario incompleto')
+      }
+    },
+    validate() {
+      this.$refs.form.validate()
+    },
+    reset() {
+      this.$refs.form.reset()
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation()
+    },
+  },
+}
 </script>
 
 <style>
@@ -552,4 +594,17 @@ nav a:hover {
   width: 100%;
   background: url(/stayawake/src/static/img/ruta.jpg);
 }
+
+.cajatexto input{
+  background: white !important;
+}
+
+.cajatexto label{
+  color: black !important;
+}
+
+.cajatexto .v-messages__message{
+  color: white !important;
+}
+
 </style>
