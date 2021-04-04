@@ -48,6 +48,20 @@
       "lastName": "Parra",
       "mail": "danielxito@gmail.com",
       "password": "danielito"
+    },
+    {
+      "id": "1101263250",
+      "name": "Valentina",
+      "lastName": "Sierra",
+      "mail": "valsigu30@gmail.com",
+      "password": "contrasena"
+    }
+  ],
+  "rutas": [
+    {
+      "id": 1,
+      "salida": "Calle tal tal",
+      "llegada": "Calle tal tal"
     }
   ]
 }
