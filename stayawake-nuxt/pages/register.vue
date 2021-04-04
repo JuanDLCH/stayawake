@@ -39,14 +39,6 @@
             required
         ></v-text-field>
 
-        <v-select
-            v-model="product.role"
-            :rules="rules.required"
-            :item="role"
-            label="rol"
-            required
-        ></v-select>
-
         <v-btn color="success" @click="saveProduct()">Guardar producto</v-btn>
 
     </v-form>
@@ -62,17 +54,21 @@
         id: "",
         name: ""
       },
-      role:["Administrador", "Conductor"], 
       rules:{
           required: [v => !!v || "El campo es obligatorio"]
       }
     }),
 
     methods: {
-      saveProduct(){
+     async saveProduct(){
           if(this.$refs.formRegister.validate()){
             let product = Object.assign({}, this.product); 
             console.log(product);
+
+            //json-server --watch db.json -p 3001
+
+            let response = await this.$axios.post('http://localhost:3001/usuarios', product);
+            console.log(response);
           }else{
             console.log("Formualario incompleto");
           } 

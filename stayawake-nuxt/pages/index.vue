@@ -59,7 +59,7 @@
 
             <a href="">¿Olvidaste tu contraseña?</a>
 
-            <p>¿No tienes cuenta? <a href="">Registrate</a></p>
+            <p>¿No tienes cuenta? <a href="/register">Registrate</a></p>
           </div>
         </div>
       </div>
