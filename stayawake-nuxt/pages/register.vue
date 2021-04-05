@@ -63,6 +63,7 @@ export default {
   },
 
   data: () => ({
+    value: String,
     valid: true,
     user: {
       id: '',
