@@ -1,91 +1,155 @@
 <template>
-  <div>
-      <h1>Registro</h1>
-
-    <template>
-    <v-form ref="formRegister" v-model="valid" lazy-validation>
-
-        <v-text-field 
-            v-model="product.id"
+  <div class="form">
+    <Nav />
+    <div class="formulario">
+      <v-card elevation="2" outlined shaped tile class="tarjeta">
+        <h1>Registro</h1>
+        <v-form ref="formRegister" v-model="valid" lazy-validation id="miform">
+          <v-text-field
+            v-model="user.id"
             :rules="rules.required"
-            label="Identificación" 
-         ></v-text-field>
+            label="Identificación"
+          ></v-text-field>
 
-        <v-text-field 
-            v-model="product.name"
+          <v-text-field
+            v-model="user.name"
             :rules="rules.required"
             label="Nombre"
-             required
-         ></v-text-field>
-
-        <v-text-field 
-            v-model="product.lastName"
-            :rules="rules.required"
-            label="Apellidos" 
             required
-        ></v-text-field>  
+          ></v-text-field>
 
-        <v-text-field 
-            v-model="product.mail"
+          <v-text-field
+            v-model="user.lastName"
             :rules="rules.required"
-            label="E-mail" 
+            label="Apellidos"
             required
-        ></v-text-field>
+          ></v-text-field>
 
-        <v-text-field 
-            v-model="product.password"
+          <v-text-field
+            v-model="user.email"
+            :rules="emailRules"
+            label="E-mail"
+            required
+          ></v-text-field>
+
+          <v-text-field
+            v-model="user.password"
             :rules="rules.required"
-            label="Contraseña" 
+            label="Contraseña"
             required
-        ></v-text-field>
+            type="password"
+          ></v-text-field>
 
-        <v-btn color="success" @click="saveProduct()">Guardar producto</v-btn>
-
-    </v-form>
-    </template>
+          <v-btn color="success" @click="saveUser()" class="button"
+            >Registrarse</v-btn
+          >
+        </v-form>
+      </v-card>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      valid: true,
-      product:{
-        id: "",
-        name: ""
-      },
-      rules:{
-          required: [v => !!v || "El campo es obligatorio"]
-      }
-    }),
+import Nav from '/components/Nav.vue'
+export default {
+  components: {
+    Nav
+  },
 
-    methods: {
-     async saveProduct(){
-          if(this.$refs.formRegister.validate()){
-            let product = Object.assign({}, this.product); 
-            console.log(product);
-
-            //json-server --watch db.json -p 3001
-
-            let response = await this.$axios.post('http://localhost:3001/usuarios', product);
-            console.log(response);
-          }else{
-            console.log("Formualario incompleto");
-          } 
-      },
-      validate () {
-        this.$refs.form.validate()
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
-      },
+  data: () => ({
+    valid: true,
+    user: {
+      id: '',
+      name: '',
     },
-  }
+    rules: {
+      required: [(v) => !!v || 'El campo es obligatorio'],
+    },
+
+    email: '',
+    emailRules: [
+      (v) => !!v || 'E-mail requerido',
+      (v) => /.+@.+\..+/.test(v) || 'E-mail inválido',
+    ],
+  }),
+
+  methods: {
+    async saveUser() {
+      if (this.$refs.formRegister.validate()) {
+        let user = Object.assign({}, this.user)
+        console.log(user)
+
+        //json-server --watch db.json -p 3001
+        try {
+          let response = await this.$axios.post(
+            'http://localhost:3001/usuarios',
+            user
+          )
+          console.log(response)
+          this.$swal.fire({
+            type: 'success',
+            title: 'Formulario diligenciado correctamente.',
+            text: 'El registro se realizó',
+          })
+        } catch (error) {
+          this.$swal.fire({
+            type: 'warning',
+            title: 'ERROR',
+            text: 'El usuario ya existe',
+          })
+        }
+      } else {
+        console.log('Formualario incompleto')
+        this.$swal.fire({
+          type: 'warning',
+          title: 'Formulario incompleto.',
+          text: 'Todos los campos deben ser diligenciados',
+        })
+      }
+      this.$refs.formRegister.reset()
+    },
+    validate() {
+      this.$refs.form.validate()
+    },
+    reset() {
+      this.$refs.form.reset()
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation()
+    },
+  },
+}
 </script>
 
 <style>
+.tarjeta {
+  padding: 10%;
+}
+.formulario {
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  margin: 0;
+}
+form {
+  margin: 0;
+  width: 100%;
+}
 
+.formulario h1 {
+  color: black;
+}
+.form {
+  height: 100vh;
+  background-color: rgba(0, 107, 230, 0.411);
+  margin: 0;
+}
+
+.button span {
+  color: black;
+  margin: 0;
+}
 </style>

@@ -1,24 +1,19 @@
 <template>
-  <body>
-    <link>
+  <div>
+    <body>
+      <!-- Primera pantalla de la pagina -->
+      <Inicio />
+    </body>
 
-    <!-- Primera pantalla de la pagina -->
-
-    <Inicio />
-
-    <!-- Cuerpo -->
     <main>
-
+      <!-- Cuerpo -->
       <Origen />
 
       <Objetivo />
-
     </main>
 
     <!-- Footer -->
-
-    
-  </body>
+  </div>
 </template>
 
 <script>
@@ -27,12 +22,12 @@ import Origen from '/components/Origen.vue'
 import Objetivo from '/components/Objetivo.vue'
 export default {
   components: {
-    Inicio, Origen, Objetivo
+    Inicio,
+    Origen,
+    Objetivo,
   },
 }
 </script>
 
 <style>
-
-
 </style>

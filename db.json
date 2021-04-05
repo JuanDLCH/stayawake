@@ -55,6 +55,20 @@
       "lastName": "Sierra",
       "mail": "valsigu30@gmail.com",
       "password": "contrasena"
+    },
+    {
+      "id": "123456",
+      "name": "Jader",
+      "lastName": "Daniel",
+      "mail": "jaderdaniel@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": "32181979",
+      "name": "Sandra",
+      "lastName": "Garcia",
+      "mail": "sandrita@gmail.com",
+      "password": "micontraseña"
     }
   ],
   "rutas": [
