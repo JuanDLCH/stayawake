@@ -9,6 +9,7 @@
             v-model="user.id"
             :rules="rules.required"
             label="Identificación"
+            :append-icon="'mdi-card-account-details'"
           ></v-text-field>
 
           <v-text-field
@@ -16,6 +17,7 @@
             :rules="rules.required"
             label="Nombre"
             required
+            :append-icon="'mdi-account-box'"
           ></v-text-field>
 
           <v-text-field
@@ -23,6 +25,7 @@
             :rules="rules.required"
             label="Apellidos"
             required
+            :append-icon="'mdi-account-box'"
           ></v-text-field>
 
           <v-text-field
@@ -30,6 +33,7 @@
             :rules="emailRules"
             label="E-mail"
             required
+            :append-icon="'mdi-email'"
           ></v-text-field>
 
           <v-text-field
@@ -37,7 +41,9 @@
             :rules="rules.required"
             label="Contraseña"
             required
-            type="password"
+            :append-icon="value ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append="() => (value = !value)"
+            :type="value ? 'password' : 'text'"
           ></v-text-field>
 
           <v-btn color="success" @click="saveUser()" class="button"
@@ -53,7 +59,7 @@
 import Nav from '/components/Nav.vue'
 export default {
   components: {
-    Nav
+    Nav,
   },
 
   data: () => ({

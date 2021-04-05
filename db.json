@@ -2,73 +2,38 @@
   "usuarios": [
     {
       "id": "1000638705",
-      "name": "Juan",
-      "lastName": "Londono",
-      "mail": "juandiego0329@gmail.com",
+      "name": "Juan Diego",
+      "lastName": "Londono Chavarria",
+      "email": "juandiego0329@gmail.com",
       "password": "password"
     },
     {
       "id": "1000635820",
       "name": "Jader Daniel",
-      "lastName": "Atehortua",
-      "mail": "daniel0606zapata@gmail.com",
+      "lastName": "Atehortúa Zapata",
+      "email": "daniel0606zapata@gmail.com",
       "password": "123"
     },
     {
       "id": "mario",
       "name": "Mario",
       "lastName": "Saldarriaga",
-      "mail": "alejocol96@gmail.com",
+      "email": "alejocol96@gmail.com",
       "password": "mario123"
     },
     {
       "id": "1000763295",
       "name": "Jhon",
       "lastName": "Aviles",
-      "mail": "aviles52ruiz@gmail.com",
+      "email": "aviles52ruiz@gmail.com",
       "password": "jhon123"
     },
     {
       "id": "pablo",
       "name": "Pablo",
       "lastName": "Gonzalez",
-      "mail": "pablogonzalez@gmail.com",
+      "email": "pablogonzalez@gmail.com",
       "password": "pablo123"
-    },
-    {
-      "id": "1000200300",
-      "name": "Bell ",
-      "lastName": "Manrique",
-      "mail": "bmanrique@udem.edu.co",
-      "password": "passwordbell"
-    },
-    {
-      "id": "3620896",
-      "name": "Daniel",
-      "lastName": "Parra",
-      "mail": "danielxito@gmail.com",
-      "password": "danielito"
-    },
-    {
-      "id": "1101263250",
-      "name": "Valentina",
-      "lastName": "Sierra",
-      "mail": "valsigu30@gmail.com",
-      "password": "contrasena"
-    },
-    {
-      "id": "123456",
-      "name": "Jader",
-      "lastName": "Daniel",
-      "mail": "jaderdaniel@gmail.com",
-      "password": "12345"
-    },
-    {
-      "id": "32181979",
-      "name": "Sandra",
-      "lastName": "Garcia",
-      "mail": "sandrita@gmail.com",
-      "password": "micontraseña"
     }
   ],
   "rutas": [
