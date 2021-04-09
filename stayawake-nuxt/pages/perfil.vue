@@ -39,8 +39,6 @@ export default {
   margin-top: 5%;
   height: 100vh;
 }
-.verrruta{
-}
 .form {
   /*background-color: rgba(60, 145, 49, 0.411);*/
   background: url('@/static/img/greenbackground.png');
