@@ -2,12 +2,12 @@
   <div class="form">
     <Nav />
 
-    <div class="contenedor">
+    <div class="perfil">
       <Perfil class="formulario" />
+    </div>
 
-      <div class="contenedor-secundario">
-        <Rutas class="rutitas" />
-      </div>
+    <div class="verruta">
+      <Rutas class="rutitas" />
     </div>
   </div>
 </template>
@@ -31,21 +31,28 @@ export default {
 </script>
 
 <style>
-.formulario {
+
+.perfil{
+  margin: 0;
+  width: 60%;
+  margin-left: 20%;
   margin-top: 5%;
-  width: 40%;
+  height: 100vh;
+}
+.verrruta{
+}
+.form {
+  /*background-color: rgba(60, 145, 49, 0.411);*/
+  background: url('@/static/img/greenbackground.png');
+  margin: 0;
 }
 
-.contenedor {
-  width: 80%;
-}
-
-.contenedor-secundario{
-  margin-top: 5%;
-  width: 40%;
+.formulario h1 {
+  color: black;
 }
 
 .rutitas {
-  margin-top: 10%;
+  height: 100vh;
+  width: 60%;
 }
 </style>

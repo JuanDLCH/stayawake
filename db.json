@@ -66,15 +66,42 @@
   ],
   "rutas": [
     {
-      "id": "123456",
-      "salida": "Aqui",
-      "llegada": "Alla",
+      "id": "123789",
+      "salida": "Florencia",
+      "llegada": "Robledo",
       "observation": "No"
+    }
+  ],
+  "recordatorios": [
+    {
+      "id": 2,
+      "title": "Vista al frente",
+      "msg": "Estudiantes de ingenieria descansando en el camino"
     },
     {
-      "id": "123789",
-      "salida": "Bello",
-      "llegada": "Robledo"
+      "id": 3,
+      "title": "Cuidado",
+      "msg": "Jotos cerca"
+    },
+    {
+      "id": 4,
+      "title": "Ojo",
+      "msg": "Otakus en el camino"
+    },
+    {
+      "id": 5,
+      "title": "Ojo",
+      "msg": "Otakus en el camino"
+    },
+    {
+      "id": 6,
+      "title": "Ojo",
+      "msg": "Jugadores de free fire en el bosque"
+    },
+    {
+      "id": 7,
+      "title": "Atencion",
+      "msg": "Mango vendiendo obleas"
     }
   ]
 }

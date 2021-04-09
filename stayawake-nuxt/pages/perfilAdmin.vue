@@ -2,13 +2,20 @@
   <div class="form">
     <Nav class="navi" />
 
-    <div class="contenedors">
+    <div class="perfil">
       <Perfil class="formulario" />
+    </div>
 
-      <div class="contenedor-secundarios">
-          <Aprobar class="cuadroAprobar"/>
-          <AsignarRuta class="cuadroAsignar" />
-      </div>
+    <div class="aprobarUsuarios">
+      <Aprobar class="cuadroAprobar" />
+    </div>
+
+    <div class="asignarruta">
+      <AsignarRuta class="cuadroAsignar" />
+    </div>
+
+    <div class="crearNotificacion">
+      <CrearNoti class="cuadroNotificacion" />
     </div>
   </div>
 </template>
@@ -18,55 +25,85 @@ import Nav from '/components/Nav.vue'
 import Perfil from '/components/formperfil.vue'
 import Aprobar from '/components/AprobarUsuario.vue'
 import AsignarRuta from '/components/AsignarRuta.vue'
+import CrearNoti from '/components/crearNoti.vue'
 export default {
   components: {
     Nav,
     Perfil,
     Aprobar,
     AsignarRuta,
+    CrearNoti,
   },
 }
 </script>
 
 <style>
+/* Perfil del usuario */
+
+.perfil {
+  background: url('@/static/img/greenbackground.png');
+  height: 100vh;
+  padding-top: 5vh;
+}
+
 .formulario {
-    padding-top: 12vh;
-  margin-left: 10%;
   text-align: center;
+  width: 50%;
+  margin-left: 25%;
 }
 
-.contenedors{
-    align-self: center;
-    width: 80%;
-    margin-left: 10%;
-    padding-top: 0;
-    display: flex;
-
-
+.formulario h1 {
+  color: black;
 }
 
-.contenedor-secundarios{
-    padding-top: 8vh;
-    float: right;
-    margin-left: 10%;
-    width: 40%;
+/* Aprobar Usuarios */
+
+.aprobarUsuarios {
+  background: url('@/static/img/bluebackground.png');
+  height: 100vh;
 }
 
-.cuadroAprobar{
-    margin-top: 4%;
-    width: 100%;
+.cuadroAprobar {
+  width: 50%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.cuadroAsignar{
-    margin: 0;
-    margin-top: 10%;
+/* Asignacino de rutas */
+
+.asignarruta {
+  height: 100vh;
+  background: url('@/static/img/greenbackground.png');
+  height: 100vh;
+  padding-top: 5vh;
 }
 
-.cuadroAsignar div{
-    margin: 0;
+.cuadroAsignar {
+  width: 60%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.navi{
-    height: 8vh;
+/* Crear notifiaciones */
+.crearNotificacion {
+  background: url('@/static/img/bluebackground.png');
+  height: 100vh;
+  padding-top: 4vh;
+}
+
+.cuadroNotificacion {
+  width: 60%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.navi {
+  height: 8vh;
 }
 </style>

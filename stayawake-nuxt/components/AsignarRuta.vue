@@ -1,7 +1,7 @@
 <template>
   <div class="formularioAnadir">
     <v-card elevation="2" outlined shaped tile class="tarjetaAnadir">
-      <h1>Asignar Ruta</h1>
+      <h1>Asignar Rutas</h1>
       <v-form ref="formAnadir" v-model="valid" lazy-validation id="miform">
         <v-text-field
           v-model="route.id"
@@ -27,6 +27,7 @@
         <v-textarea
           v-model="route.observation"
           label="Observaciones"
+          :append-icon="'mdi-message-reply-text'"
         ></v-textarea>
 
         <v-btn color="success" @click="searchUser()">Asignar</v-btn>
@@ -54,8 +55,6 @@ export default {
     rules: {
       required: [(v) => !!v || 'El campo es obligatorio'],
     },
-
-    beforeMount() {},
   }),
 
   methods: {
@@ -88,9 +87,8 @@ export default {
                   allowOutsideClick: false,
                 })
               } else {
-                  this.setRoute()
+                this.setRoute()
               }
-              this.$refs.formAnadir.reset()
             }
           } else {
             this.$swal.fire({
@@ -131,22 +129,63 @@ export default {
             text: 'Se agrego la ruta correctamente',
           })
         } catch (error) {
-          this.$swal.fire({
-            type: 'warning',
-            title: 'ERROR',
-            text: 'Este usuario ya tiene asignada una ruta, no se podra asignar otra hasta que no la marque como completada',
-          })
+          this.$swal
+            .fire({
+              type: 'warning',
+              title: 'Atencion',
+              text:
+                'Este usuario ya tiene una ruta asignada ¿Desea actualizarla?',
+              allowEscapeKey: false,
+              allowOutsideClick: false,
+              showCancelButton: true,
+            })
+            .then(async (result) => {
+              if (result.value) {
+                try {
+                  this.updateroute()
+                } catch (error) {
+                  this.$swal.fire({
+                    type: 'error',
+                    title: 'Ha ocurrido un problema al actualizar',
+                    text: error.toString(),
+                  })
+                }
+              }
+            })
         }
       } else {
-        console.log('Formualario incompleto')
+        console.log('Formulario incompleto')
         this.$swal.fire({
           type: 'warning',
           title: 'Formulario incompleto.',
           text: 'Todos los campos deben ser diligenciados',
         })
       }
-      this.$refs.formAnadir.reset()
     },
+
+    async updateroute() {
+      if (this.$refs.formAnadir.validate()) {
+        // Crear un nuevo objeto con la info del usuario
+        let route = Object.assign({}, this.route)
+        let response = await this.$axios.put(
+          'http://localhost:3001/rutas/' + route.id,
+          route
+        )
+        this.$swal.fire({
+          type: 'success',
+          title: 'Operación exitosa.',
+          text: 'El item se actualizo correctamente.',
+        })
+        this.$refs.formAnadir.reset()
+      } else {
+        this.$swal.fire({
+          type: 'warning',
+          title: 'Formulario incompleto.',
+          text: 'Hay campos que deben ser diligenciados. xd',
+        })
+      }
+    },
+
     validate() {
       this.$refs.form.validate()
     },

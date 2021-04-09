@@ -36,7 +36,6 @@
 
 <script>
 const url_api = 'http://localhost:3001/usuarios/'
-
 export default {
   data: () => ({
     value: String,
@@ -47,6 +46,7 @@ export default {
   }),
 
   methods: {
+
     enproceso() {
       this.$swal.fire({
         type: 'warning',

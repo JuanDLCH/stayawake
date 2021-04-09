@@ -23,6 +23,7 @@
           v-model="route.observation"
           label="Observaciones"
           :readonly="true"
+          :append-icon="'mdi-message-reply-text'"
         ></v-textarea>
 
         <v-btn color="success" @click="completar()"> Completada </v-btn>
@@ -115,25 +116,12 @@ export default {
 </script>
 
 <style>
-.contenedor {
-  align-self: center;
-  width: 80%;
-  margin-left: 10%;
-  padding-top: 6vh;
-  display: flex;
-}
-
-.contenedor-secundario {
-  padding-top: 3vh;
-  float: right;
-  margin-left: 10%;
-  width: 40%;
-}
 
 .formularioRutas {
   width: 100%;
+  height: 100vh;
+  margin-left: 20%;
   text-align: center;
-  margin: 0;
 }
 
 .formularioRutas h1 {

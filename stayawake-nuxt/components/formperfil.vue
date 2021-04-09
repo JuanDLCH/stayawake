@@ -1,5 +1,4 @@
 <template>
-  <div class="formulario">
     <v-card elevation="2" outlined shaped tile class="tarjeta">
       <h1>Perfil de Usuario</h1>
       <v-form ref="formUpdate" v-model="valid" lazy-validation id="miform">
@@ -58,7 +57,6 @@
         <v-btn color="error" @click="deleteuser()">Eliminar Usuario</v-btn>
       </v-form>
     </v-card>
-  </div>
 </template>
 
 <script>
@@ -184,36 +182,9 @@ export default {
 
 <style>
 .tarjeta {
-  padding: 10%;
-}
-.formulario {
-  width: 40%;
-  text-align: center;
-  margin: 0;
-}
-form {
-  margin: 0;
-  width: 100%;
-}
-
-.formulario h1 {
-  color: black;
-}
-.form {
-  /*background-color: rgba(60, 145, 49, 0.411);*/
-  background: url('@/static/img/greenbackground.png');
-  margin: 0;
-  height: 100vh;
-}
-
-.button span {
-  color: black;
-  margin: 0;
-}
-
-.button_red span {
-  color: red;
-  margin: 0;
+  padding: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 .v-input__slot {
