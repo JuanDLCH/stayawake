@@ -1,35 +1,38 @@
 <template>
-  <!-- Encabezado -->
-  <header>
-    <!-- Menu de navegacion -->
-    <div class="navegacion">
-      <Nav />
+  <section id="inicio">
+    <!-- Encabezado -->
+    <header>
+      <!-- Menu de navegacion -->
+      <div class="navegacion">
+        <Nav />
 
-      <div class="principal">
-        <div class="textocentrado">
-          <h1>StayAwake</h1>
-          <p>
-            Protegemos tu vida y la de los demás actores viales en la carretera,
-            creamos consciencia en la via y salvamos la vida de muchos
-            conductoresy pasajeros de ser victimas de accidentes por
-            microsueños.
-          </p>
-          <p>¡Mantente despierto!</p>
-          <p>Tu familia te espera.</p>
+        <div class="principal">
+          <div class="textocentrado">
+            <h1>StayAwake</h1>
+            <p>
+              Protegemos tu vida y la de los demás actores viales en la
+              carretera, creamos consciencia en la via y salvamos la vida de
+              muchos conductoresy pasajeros de ser victimas de accidentes por
+              microsueños.
+            </p>
+            <p>¡Mantente despierto!</p>
+            <p>Tu familia te espera.</p>
+          </div>
         </div>
-      </div>
 
-      <Login />
-    </div>
-  </header>
+        <Login />
+      </div>
+    </header>
+  </section>
 </template>
 
 <script>
 import Nav from '/components/Nav.vue'
 import Login from '/components/Login.vue'
 export default {
-    components: {
-    Login, Nav
+  components: {
+    Login,
+    Nav,
   },
 }
 </script>
@@ -70,8 +73,6 @@ label {
 h2 {
   color: white;
 }
-
-
 
 /* Imagen de inicio */
 

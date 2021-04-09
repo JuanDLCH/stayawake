@@ -4,10 +4,11 @@
       ><img src="@/static/img/stayawakelogo.svg" alt="logo" class="logo"
     /></nuxt-link>
     <ul>
-      <li><nuxt-link to="/">Inicio</nuxt-link></li>
-      <li><nuxt-link to="/#origen">Origen</nuxt-link></li>
-      <li><nuxt-link to="/#objetivo">Objetivo</nuxt-link></li>
-      <li><nuxt-link to="/#nosotros">Nosotros</nuxt-link></li>
+     <!-- <li><nuxt-link to="/">Inicio</nuxt-link></li> -->
+      <li><a href="/" v-scroll-to="'#inicio'">Inicio</a></li>
+      <li><a href="#origen" v-scroll-to="'#origen'">Origen</a></li>
+      <li><a href="#objetivo" v-scroll-to="'#objetivo'">Seguridad</a></li>
+     <!-- <li><a href="#nosotros" v-scroll-to="'#nosotros'">Nosotros</a></li> -->
       <li>
         <a href="mailto:stayawakeproject@yopmail.com">Contactanos</a>
       </li>

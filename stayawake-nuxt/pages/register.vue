@@ -46,7 +46,15 @@
             :type="value ? 'password' : 'text'"
           ></v-text-field>
 
-          <v-btn color="success" @click="saveUser()" class="button"
+          <v-select
+            v-model="user.category"
+            :rules="rules.required"
+            :items="categories"
+            label="¿Cómo vas a usar la aplicación?"
+            required
+          ></v-select>
+
+          <v-btn color="success" @click="saveUser()"
             >Registrarse</v-btn
           >
         </v-form>
@@ -65,13 +73,20 @@ export default {
   data: () => ({
     value: String,
     valid: true,
+
     user: {
       id: '',
       name: '',
+      pending: true,
     },
+
+    categories: ['Administrador', 'Conductor'],
+
     rules: {
       required: [(v) => !!v || 'El campo es obligatorio'],
     },
+
+    beforeMount() {},
 
     email: '',
     emailRules: [
@@ -79,6 +94,8 @@ export default {
       (v) => /.+@.+\..+/.test(v) || 'E-mail inválido',
     ],
   }),
+
+  beforeMount() {},
 
   methods: {
     async saveUser() {
@@ -131,6 +148,7 @@ export default {
 <style>
 .tarjeta {
   padding: 10%;
+  margin-top: 10vh;
 }
 .formulario {
   width: 40%;
@@ -140,6 +158,7 @@ export default {
   transform: translate(-50%, -50%);
   text-align: center;
   margin: 0;
+  margin-top: 5vh;
 }
 form {
   margin: 0;
@@ -151,7 +170,9 @@ form {
 }
 .form {
   height: 100vh;
-  background-color: rgba(0, 107, 230, 0.411);
+  /*background-color: rgba(0, 35, 230, 0.411);*/
+  background: url('@/static/img/bluebackground.png');
+  background-size: 100% 100%;
   margin: 0;
 }
 

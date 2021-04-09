@@ -68,15 +68,26 @@ export default {
             delete findUser.password
             localStorage.setItem('user-in', findUser.id)
 
-            this.$swal.fire({
-              type: 'success',
-              title: 'Exito',
-              text: 'Inicio de sesion exitoso',
-              allowEscapeKey: false,
-              allowOutsideClick: false,
-            })
-
-            this.$router.push('/perfil')
+            if (findUser.pending) {
+              this.$swal.fire({
+                type: 'warning',
+                title: 'No permitido',
+                text: 'El usuario todavia se encuentra en proceso de revision',
+              })
+            } else {
+              this.$swal.fire({
+                type: 'success',
+                title: 'Exito',
+                text: 'Bienvenido ' + findUser.name,
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+              })
+              if (findUser.category == 'Administrador') {
+                this.$router.push('/perfilAdmin')
+              } else {
+                this.$router.push('/perfil')
+              }
+            }
           } else {
             this.$swal.fire({
               type: 'error',
@@ -134,7 +145,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.v-input__slot{
+.v-input__slot {
   background-color: white;
   padding: 10px;
 }
