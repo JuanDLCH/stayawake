@@ -7,7 +7,8 @@
       "lastName": "Londono Chavarria",
       "email": "juandiego0329@gmail.com",
       "password": "password",
-      "category": "Administrador"
+      "category": "Administrador",
+      "deleted": 0
     },
     {
       "id": "1000635820",
@@ -16,7 +17,8 @@
       "lastName": "Atehortúa Zapata",
       "email": "daniel0606zapata@gmail.com",
       "password": "123",
-      "category": "Administrador"
+      "category": "Administrador",
+      "deleted": 0
     },
     {
       "id": "mario",
@@ -25,7 +27,8 @@
       "lastName": "Saldarriaga",
       "email": "alejocol96@gmail.com",
       "password": "mario123",
-      "category": "Administrador"
+      "category": "Administrador",
+      "deleted": 0
     },
     {
       "id": "1000763295",
@@ -34,7 +37,8 @@
       "lastName": "Aviles",
       "email": "aviles52ruiz@gmail.com",
       "password": "jhon123",
-      "category": "Administrador"
+      "category": "Administrador",
+      "deleted": 0
     },
     {
       "id": "123456",
@@ -43,25 +47,38 @@
       "lastName": "Gonzalez",
       "email": "pablito@gmail.com",
       "password": "123",
-      "category": "Conductor"
+      "category": "Conductor",
+      "deleted": 1
     },
     {
       "id": "1234",
       "name": "Pedro",
-      "pending": false,
+      "pending": true,
       "lastName": "Perez",
       "email": "pedroperez@gmail.com",
       "password": "pedrito",
-      "category": "Conductor"
+      "category": "Conductor",
+      "deleted": 0
     },
     {
       "id": "xD",
       "name": "xD",
-      "pending": true,
+      "pending": false,
       "lastName": "xD",
       "email": "xD@gmail.com",
       "password": "xD",
-      "category": "Conductor"
+      "category": "Conductor",
+      "deleted": 1
+    },
+    {
+      "id": "3507",
+      "name": "Pedro",
+      "pending": true,
+      "lastName": "Infante",
+      "email": "pedritopepito@yopmail.com",
+      "password": "123",
+      "category": "Conductor",
+      "deleted": 0
     }
   ],
   "rutas": [
@@ -89,11 +106,6 @@
       "msg": "Otakus en el camino"
     },
     {
-      "id": 5,
-      "title": "Ojo",
-      "msg": "Otakus en el camino"
-    },
-    {
       "id": 6,
       "title": "Ojo",
       "msg": "Jugadores de free fire en el bosque"
@@ -102,6 +114,26 @@
       "id": 7,
       "title": "Atencion",
       "msg": "Mango vendiendo obleas"
+    },
+    {
+      "id": 8,
+      "title": "Oe",
+      "msg": "Vieja sin ojos en la ruta"
+    },
+    {
+      "id": 9,
+      "title": "Jajsjajaja",
+      "msg": "mimamamemima"
+    },
+    {
+      "id": 10,
+      "title": "xd",
+      "msg": "xd"
+    },
+    {
+      "title": "Ay mi madre el bicho",
+      "msg": "Ola",
+      "id": 11
     }
   ]
 }

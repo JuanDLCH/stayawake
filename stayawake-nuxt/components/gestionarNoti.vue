@@ -1,44 +1,28 @@
 <template>
-  <div class="formularioNotif">
-    <v-card elevation="2" outlined shaped tile class="tarjetaNotif">
-      <h1>Crear Notifiacion</h1>
-      <v-form ref="formNotif" v-model="valid" lazy-validation id="miform">
-        <v-text-field
-          v-model="notification.title"
-          :rules="rules.required"
-          label="Title"
-          :append-icon="'mdi-card-account-details'"
-        ></v-text-field>
+  <div class="gestionarNoti">
+    <v-card>
+      <v-card-actions>
+        <h1 class="acheuno">Gestionar Notificaciones</h1>
+        <v-spacer></v-spacer>
+        <v-btn color="success" to="notis">Crear Notificacion</v-btn>
+      </v-card-actions>
 
-        <v-textarea
-          v-model="notification.msg"
-          label="Mensaje"
-          :rules="rules.required"
-          :append-icon="'mdi-message-reply-text'"
-        ></v-textarea>
-
-        <v-btn color="success" @click="setnotification()">Crear</v-btn>
-        <v-btn color="warning" @click="askforid()">Actualizar</v-btn>
-      </v-form>
-
-      <div class="borrarnoti">
-        <h1>Gestionar Notifiaciones</h1>
-        <v-form
-          ref="formBorrarNotif"
-          v-model="valid"
-          lazy-validation
-          id="miform">
-
-          <v-text-field
-            v-model="notification.id"
-            :rules="rules.required"
-            label="Id Notificacion"
-            :append-icon="'mdi-card-account-details'"
-          ></v-text-field>
-          <v-btn color="success" @click="showNoti()">Previsualizar</v-btn>
-          <v-btn color="error" @click="deletenotification()">Eliminar</v-btn>
-        </v-form>
-      </div>
+      <v-card-text>
+        <v-data-table
+          :headers="headers"
+          :items="notifications"
+          :items-per-page="5"
+          class="elevation-1"
+        >
+          <template v-slot:item.actions="{ item }">
+            <v-icon class="mr-2" @click="showNoti(item)"> mdi-eye </v-icon>
+            <v-icon class="mr-2" @click="editnotification(item)">
+              mdi-pencil
+            </v-icon>
+            <v-icon @click="deletenotification(item)"> mdi-delete </v-icon>
+          </template>
+        </v-data-table>
+      </v-card-text>
     </v-card>
   </div>
 </template>
@@ -50,55 +34,52 @@ const url_api = 'http://localhost:3001/recordatorios/'
 export default {
   components: {},
 
-  data: () => ({
-    value: String,
-    valid: true,
+  data() {
+    return {
+      headers: [
+        {
+          text: 'ID',
+          align: 'start',
+          sortable: true,
+          value: 'id',
+        },
+        { text: 'Titulo', value: 'title' },
+        { text: 'Mensaje', value: 'msg' },
+        { text: 'Acciones', value: 'actions' },
+      ],
+      notifications: [],
 
-    notification: {
+      value: String,
+      valid: true,
+
+      notification: {
         id: '',
-      title: '',
-      msg: '',
-    },
+        title: '',
+        msg: '',
+      },
 
-    rules: {
-      required: [(v) => !!v || 'El campo es obligatorio'],
-    },
-  }),
+      rules: {
+        required: [(v) => !!v || 'El campo es obligatorio'],
+      },
+    }
+  },
+
+  beforeMount() {
+    this.getNotifications()
+  },
 
   methods: {
-    async setnotification() {
-      if (this.$refs.formNotif.validate()) {
-        let notification = Object.assign({}, this.notification)
-        console.log(notification)
-
-        try {
-          let response = await this.$axios.post(
-            'http://localhost:3001/recordatorios',
-            notification
-          )
-          console.log(response)
-          this.$swal.fire({
-            type: 'success',
-            title: 'Exito',
-            text: 'Se agrego la notificacion correctamente con id: '+ response.id,
-          })
-        } catch (error) {
-          this.$swal.fire({
-            type: 'warning',
-            title: 'Atencion',
-            text: 'Ocurrio un error inesperado',
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-          })
-        }
-      } else {
-        console.log('Formulario incompleto')
-        this.$swal.fire({
-          type: 'warning',
-          title: 'Formulario incompleto.',
-          text: 'Todos los campos deben ser diligenciados',
-        })
+    async getNotifications() {
+      try {
+        let response = await this.$axios.get(url_api)
+        this.notifications = response.data
+      } catch (error) {
+        console.error(error)
       }
+    },
+
+    async editnotification(item) {
+      this.$router.push('notis/'+ item.id)
     },
 
     async askforid() {
@@ -159,7 +140,7 @@ export default {
       }
     },
 
-    deletenotification() {
+    deletenotification(item) {
       this.$swal
         .fire({
           type: 'warning',
@@ -172,49 +153,45 @@ export default {
         .then(async (result) => {
           if (result.value) {
             try {
-              let url = 'http://localhost:3001/recordatorios/' + this.notification.id
+              let url = url_api + item.id
               await this.$axios.delete(url)
-              this.$refs.formBorrarNotif.reset()
               this.$swal.fire({
                 type: 'success',
                 title: 'Operación exitosa.',
-                text: 'La notifiacion se eliminó correctamente.',
+                text: 'La notificación se eliminó correctamente.',
               })
+              this.getNotifications()
             } catch (error) {
               this.$swal.fire({
                 type: 'error',
                 title: 'Error',
-                text: 'No se encontro esta notificacion',
+                text: 'No se encontró esta notificación',
               })
             }
           }
         })
     },
 
-    async showNoti() {
+    async showNoti(item) {
       try {
         //
-        let response = await this.$axios.get(
-          'http://localhost:3001/recordatorios/' + this.notification.id
-        )
+        let response = await this.$axios.get(url_api + item.id)
         this.noti = response.data
         this.$swal.fire({
-                type: 'success',
-                title: this.noti.title,
-                text: this.noti.msg,
-              })
+          title: this.noti.title,
+          text: this.noti.msg,
+        })
       } catch (error) {
         this.$swal
           .fire({
             type: 'error',
             title: 'Oops...',
-            text: 'El usuario no existe o hubo un error cargandolo.',
+            text: 'La notificacion no existe o hubo un error cargandola.',
             allowEscapeKey: false,
             allowOutsideClick: false,
           })
           .then((result) => {
             if (result.value) {
-              
             }
           })
       }
@@ -234,10 +211,8 @@ export default {
 </script>
 
 <style>
-.borrarnoti{
-    margin-top: 10%;
-    width: 50%;
-    margin-left: 25%;
+.gestionarNoti {
+  width: 100%;
 }
 .formularioNotif {
   width: 100%;
