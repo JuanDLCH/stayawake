@@ -4,10 +4,17 @@
       <h1>Asignar Rutas</h1>
       <v-form ref="formAnadir" v-model="valid" lazy-validation id="miform">
         <v-text-field
-          v-model="route.id"
+          v-model="route.idConductor"
           :rules="rules.required"
           label="ID del conductor a asignar"
           :append-icon="'mdi-card-account-details'"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="route.fecha"
+          :rules="rules.required"
+          label="Fecha de inicio de ruta"
+          :append-icon="'mdi-calendar'"
         ></v-text-field>
 
         <v-text-field
@@ -30,7 +37,16 @@
           :append-icon="'mdi-message-reply-text'"
         ></v-textarea>
 
-        <v-btn color="success" @click="searchUser()">Asignar</v-btn>
+        <v-select
+          v-model="route.estado"
+          :rules="rules.required"
+          :items="categories"
+          label="Estado de la ruta"
+          required
+        ></v-select>
+
+        <v-btn color="success" @click="searchUser()">Actualizar</v-btn>
+        <v-btn color="error" to="../perfilAdmin">Volver</v-btn>
       </v-form>
     </v-card>
   </div>
@@ -38,34 +54,49 @@
 
 <script>
 var findUser
-const url_api = 'http://localhost:3001/usuarios/'
+const url_api = 'http://localhost:3001/rutas/'
 export default {
+  async asyncData({ params }) {
+    let id = params.id
+    return { id }
+  },
   components: {},
 
   data: () => ({
     value: String,
     valid: true,
 
-    route: {
-      id: '',
-      salida: '',
-      llegada: '',
-    },
+    route: {},
+
+    categories: ['No iniciada', 'En curso', 'Completada'],
 
     rules: {
       required: [(v) => !!v || 'El campo es obligatorio'],
     },
   }),
 
+  beforeMount() {
+    this.getRoute()
+  },
+
   methods: {
+    async getRoute() {
+      try {
+        let response = await this.$axios.get(url_api + this.id)
+        this.route = response.data
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
     async searchUser() {
       try {
         if (this.$refs.formAnadir.validate()) {
           //llamado a la api
-          let response = await this.$axios.get(url_api)
+          let response = await this.$axios.get('http://localhost:3001/usuarios/')
           let users = response.data
           findUser = users.find((x) => {
-            return x.id === this.route.id
+            return x.id === this.route.idConductor
           })
           if (findUser) {
             if (findUser.pending) {
@@ -87,7 +118,7 @@ export default {
                   allowOutsideClick: false,
                 })
               } else {
-                this.setRoute()
+                this.updateroute()
               }
             }
           } else {
@@ -106,60 +137,9 @@ export default {
         this.$swal.fire({
           type: 'error',
           title: 'Error al buscar el usuario.',
-          text: '',
+          text: error,
         })
         this.$refs.formAnadir.reset()
-      }
-    },
-
-    async setRoute() {
-      if (this.$refs.formAnadir.validate()) {
-        let route = Object.assign({}, this.route)
-        console.log(route)
-
-        try {
-          let response = await this.$axios.post(
-            'http://localhost:3001/rutas',
-            route
-          )
-          console.log(response)
-          this.$swal.fire({
-            type: 'success',
-            title: 'Exito',
-            text: 'Se agrego la ruta correctamente',
-          })
-        } catch (error) {
-          this.$swal
-            .fire({
-              type: 'warning',
-              title: 'Atencion',
-              text:
-                'Este usuario ya tiene una ruta asignada ¿Desea actualizarla?',
-              allowEscapeKey: false,
-              allowOutsideClick: false,
-              showCancelButton: true,
-            })
-            .then(async (result) => {
-              if (result.value) {
-                try {
-                  this.updateroute()
-                } catch (error) {
-                  this.$swal.fire({
-                    type: 'error',
-                    title: 'Ha ocurrido un problema al actualizar',
-                    text: error.toString(),
-                  })
-                }
-              }
-            })
-        }
-      } else {
-        console.log('Formulario incompleto')
-        this.$swal.fire({
-          type: 'warning',
-          title: 'Formulario incompleto.',
-          text: 'Todos los campos deben ser diligenciados',
-        })
       }
     },
 

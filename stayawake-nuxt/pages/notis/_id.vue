@@ -73,7 +73,7 @@ export default {
           title: 'Operación exitosa.',
           text: 'El item se actualizo correctamente.',
         })
-        this.$router.push('perfilAdmin')
+        this.$router.push('../perfilAdmin')
       } catch (error) {
         this.$swal.fire({
           type: 'error',

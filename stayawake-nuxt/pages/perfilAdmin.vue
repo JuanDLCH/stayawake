@@ -24,7 +24,7 @@
 import Nav from '/components/Nav.vue'
 import Perfil from '/components/formperfil.vue'
 import Aprobar from '/components/UsuariosPendientes.vue'
-import AsignarRuta from '/components/AsignarRuta.vue'
+import AsignarRuta from '/components/rutasAsignadas.vue'
 import CrearNoti from '/components/gestionarNoti.vue'
 export default {
   components: {

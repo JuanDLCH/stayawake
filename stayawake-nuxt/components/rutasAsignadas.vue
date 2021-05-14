@@ -1,23 +1,21 @@
 <template>
   <v-card>
     <v-card-actions>
-      <h1 class="acheuno">Usuarios pendientes de aprobación</h1>
+      <h1 class="acheuno">Rutas asignadas</h1>
       <v-spacer></v-spacer>
-      <v-btn color="success">Crear usuario</v-btn>
+      <v-btn color="success" to="/rutas">Asignar ruta</v-btn>
     </v-card-actions>
 
     <v-card-text>
       <v-data-table
         :headers="headers"
-        :items="users"
+        :items="routes"
         :items-per-page="5"
         class="elevation-1"
       >
         <template v-slot:item.actions="{ item }">
-          <v-icon class="mr-2" @click="aprobarUsuario(item)">
-            mdi-checkbox-marked-circle
-          </v-icon>
-          <v-icon @click="rechazarUsuario(item)"> mdi-delete </v-icon>
+          <v-icon class="mr-2" @click="editRoute(item)"> mdi-pencil </v-icon>
+          <v-icon @click="deleteRoute(item)"> mdi-delete </v-icon>
         </template>
       </v-data-table>
     </v-card-text>
@@ -30,33 +28,31 @@ export default {
     return {
       headers: [
         {
-          text: 'ID',
+          text: 'IDConductor',
           align: 'start',
           sortable: true,
-          value: 'id',
+          value: 'idConductor',
         },
-        { text: 'Nombre', value: 'name' },
-        { text: 'Apellido', value: 'lastName' },
-        { text: 'Email', value: 'email' },
-        { text: 'Contraseña', value: 'password' },
-        { text: 'Rol', value: 'category' },
+        { text: 'Fecha', value: 'fecha' },
+        { text: 'Salida', value: 'salida' },
+        { text: 'Llegada', value: 'llegada' },
+        { text: 'Observacion', value: 'observation' },
+        { text: 'Estado', value: 'estado' },
         { text: 'Acciones', value: 'actions' },
       ],
-      users: [],
+      routes: [],
     }
   },
 
   beforeMount() {
-    this.getUsers()
+    this.getRoutes()
   },
 
   methods: {
-    async getUsers() {
+    async getRoutes() {
       try {
-        let response = await this.$axios.get(
-          'http://localhost:3001/usuarios?pending=true'
-        )
-        this.users = response.data
+        let response = await this.$axios.get('http://localhost:3001/rutas')
+        this.routes = response.data
       } catch (error) {
         console.error(error)
       }
@@ -88,13 +84,12 @@ export default {
       }
     },
 
-    rechazarUsuario(User) {
+    deleteRoute(item) {
       this.$swal
         .fire({
           type: 'warning',
-          title: '¿Está seguro de rechazar el usuario?',
-          text:
-            'En caso de tratarse de un error deberá modificarlo manualmente.',
+          title: '¿Está seguro de eliminar una ruta?',
+          text: 'Ningún dato asociado a ella podrá recuperarse.',
           allowEscapeKey: false,
           allowOutsideClick: false,
           showCancelButton: true,
@@ -102,27 +97,27 @@ export default {
         .then(async (result) => {
           if (result.value) {
             try {
-              User.deleted = 1
-              User.pending = false
-              let response = await this.$axios.put(
-                'http://localhost:3001/usuarios/' + User.id,
-                User
-              )
+              let url = 'http://localhost:3001/rutas/' + item.id
+              await this.$axios.delete(url)
               this.$swal.fire({
                 type: 'success',
                 title: 'Operación exitosa.',
-                text: 'El usuario se descartó correctamente.',
+                text: 'La ruta se eliminó correctamente.',
               })
-              this.getUsers()
+              this.getRoutes()
             } catch (error) {
               this.$swal.fire({
                 type: 'error',
-                title: 'Ha ocurrido un problema al descartar',
-                text: error.toString(),
+                title: 'Error',
+                text: 'No se encontró esta ruta',
               })
             }
           }
         })
+    },
+
+    async editRoute(item) {
+      this.$router.push('rutas/' + item.id)
     },
   },
   components: {},

@@ -73,20 +73,59 @@
     {
       "id": "3507",
       "name": "Pedro",
-      "pending": true,
+      "pending": false,
       "lastName": "Infante",
       "email": "pedritopepito@yopmail.com",
       "password": "123",
       "category": "Conductor",
-      "deleted": 0
+      "deleted": 1
+    },
+    {
+      "id": "185516",
+      "name": "Alejandro",
+      "pending": true,
+      "lastName": "Guzman",
+      "email": "alejandritopg@yopmail.com",
+      "password": "123",
+      "category": "Conductor"
     }
   ],
   "rutas": [
     {
-      "id": "123789",
+      "id": 1,
+      "idConductor": "123789",
+      "fecha": "14/05/2021",
       "salida": "Florencia",
       "llegada": "Robledo",
-      "observation": "No"
+      "observation": "No",
+      "estado": "No iniciada"
+    },
+    {
+      "id": 2,
+      "idConductor": "123789",
+      "fecha": "14/05/2021",
+      "salida": "Florencia",
+      "llegada": "Robledo",
+      "observation": "No",
+      "estado": "En curso"
+    },
+    {
+      "id": 3,
+      "idConductor": "123789",
+      "fecha": "14/05/2021",
+      "salida": "Florencia",
+      "llegada": "Robledo",
+      "observation": "No",
+      "estado": "Completada"
+    },
+    {
+      "idConductor": "123456",
+      "fecha": "21/12/2021",
+      "salida": "Medellin",
+      "llegada": "Bogota",
+      "estado": "Completada",
+      "observation": "Ignorar a los paracos de la via",
+      "id": 5
     }
   ],
   "recordatorios": [
@@ -116,11 +155,6 @@
       "msg": "Mango vendiendo obleas"
     },
     {
-      "id": 8,
-      "title": "Oe",
-      "msg": "Vieja sin ojos en la ruta"
-    },
-    {
       "id": 9,
       "title": "Jajsjajaja",
       "msg": "mimamamemima"
@@ -128,11 +162,11 @@
     {
       "id": 10,
       "title": "xd",
-      "msg": "xd"
+      "msg": "Cuidado con los zorrillos :v"
     },
     {
       "title": "Ay mi madre el bicho",
-      "msg": "Ola",
+      "msg": "SIUUU",
       "id": 11
     }
   ]

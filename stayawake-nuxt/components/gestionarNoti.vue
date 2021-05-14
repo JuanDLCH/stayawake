@@ -79,7 +79,7 @@ export default {
     },
 
     async editnotification(item) {
-      this.$router.push('notis/'+ item.id)
+      this.$router.push('notis/' + item.id)
     },
 
     async askforid() {
